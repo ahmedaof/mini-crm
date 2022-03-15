@@ -12,10 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+   
 
     /**
      * Show the application dashboard.
@@ -29,7 +26,8 @@ class HomeController extends Controller
     }
     public function show($id)
     {
-        $podcast = PodCast::findOrFail($id)->with('user')->first();
+   
+        $podcast = PodCast::where('id',$id)->with('user')->first();
         return view('show',['podcast' => $podcast]);
     }
 }

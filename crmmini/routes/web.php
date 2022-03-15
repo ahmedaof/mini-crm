@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/pod-casts', PodCast::class);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/show/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show');
+Route::get('/show/{id}/{slug}', [App\Http\Controllers\HomeController::class, 'show'])->name('show')->middleware('auth');
 Auth::routes();
 

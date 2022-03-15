@@ -27,10 +27,8 @@ class PodCast extends Component
         return [
             'title'     => 'required',
             'desc'     => 'nullable',
-            'image'     => 'required|max:512',
-            // |dimensions:max_width=100,max_height=100
-            'audio'     => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav|max:25000',
-    
+             'image'     => 'required|max:512|dimensions:max_width=100,max_height=100',
+             'audio'     => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav|max:25000',
         ];
     }
     private function resetForm() {
@@ -76,14 +74,23 @@ class PodCast extends Component
     }
 
     public function editModel($id){
-        $podcast = ModelsPodCast::findOrFail($id)->first();
-        $this->title = $podcast->title ;
-        $this->desc = $podcast->desc ;
-        $this->audio = $podcast->mp3 ;
-        $this->image = $podcast->image ;
-        $this->podcast_id = $id;
-      $this->showEditModal = true ;
-    }
+      $podcast = ModelsPodCast::where('id',$id)->with('user')->first();
+        if($podcast->user_id == Auth::user()->id){
+
+          $this->title = $podcast->title ;
+          $this->desc = $podcast->desc ;
+          $this->audio = $podcast->mp3 ;
+          $this->image = $podcast->image ;
+          $this->podcast_id = $id;
+        $this->showEditModal = true ;
+        }else{
+          $this->alert('question', 'edit only by creator '. $podcast->user->name, [
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'ok',
+        ]);
+        }
+        }
+  
     public function getListeners()
 {
     return [

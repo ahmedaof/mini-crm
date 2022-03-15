@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -40,7 +40,7 @@
                               <source src="{{ asset('') }}audio/podcast/{{ $podcast->mp3 }}" type="audio/ogg">
                             </audio></td>
                             <td>
-                              <a  href="show/{{ $podcast->id }}" class="btn btn-primary">show</a>
+                              <a  href="show/{{ $podcast->id }}/{{ str_slug($podcast->title , '-') }}" class="btn btn-primary">show</a>
                             </td>
                           </tr>
                           @empty
