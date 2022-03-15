@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
     public function show($id)
     {
-        $podcast = PodCast::findOrFail($id)->first();
+        $podcast = PodCast::findOrFail($id)->with('user')->first();
         return view('show',['podcast' => $podcast]);
     }
 }
