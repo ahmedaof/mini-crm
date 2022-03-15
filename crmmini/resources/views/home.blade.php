@@ -13,8 +13,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                   @forelse($podcasts  as $podcast )
+                   {{ $podcast->title }}
+                       
+                   @empty
+                   no podast added
+                       
+                   @endforelse
+                </div>
+                <div class="row justify-content-center mt-3 mb-2">
 
-                    {{ __('You are logged in!') }}
+                    <a class="btn btn-primary col-md-4" href="/pod-casts"> go to podcast</a>
                 </div>
             </div>
         </div>
