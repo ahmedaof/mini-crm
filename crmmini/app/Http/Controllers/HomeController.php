@@ -27,4 +27,9 @@ class HomeController extends Controller
         $podcasts = PodCast::get();
         return view('home',['podcasts' => $podcasts]);
     }
+    public function show($id)
+    {
+        $podcast = PodCast::findOrFail($id)->first();
+        return view('show',['podcast' => $podcast]);
+    }
 }

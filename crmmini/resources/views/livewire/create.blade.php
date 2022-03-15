@@ -2,7 +2,7 @@
     <div class="card-body">
         <form wire:submit.prevent="podcast_create">
          <div class="justify-content-center">
-             <h4 class="col-md-4">
+             <h4 class="col-md-4 offset-md-5">
                  create podcast
              </h4>
              <div id="validation-errors"></div>
@@ -62,7 +62,7 @@
                         </button>
                   
                 </div>
-                @if ($message = Session::get('message'))
+                @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-block mt-3 mb-3">
                     <strong>{{ $message }}</strong>
                 </div>
