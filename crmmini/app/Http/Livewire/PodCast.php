@@ -119,10 +119,8 @@ class PodCast extends Component
       $data = $this->validate(
         ['title'    => 'required',
         'desc'     => 'nullable',
-        'image'    => 'required|max:512'
-        // ,
-        // |dimensions:max_width=100,max_height=100
-        // 'audio'     => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav|max:25000',
+        'image'    => 'required|max:512|dimensions:max_width=100,max_height=100',
+         'audio'     => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav|max:25000',
         ]
     );
     if($this->image_new != ''){ $relPath = 'images/podcast/';
