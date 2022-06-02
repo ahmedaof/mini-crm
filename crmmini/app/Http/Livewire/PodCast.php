@@ -28,7 +28,7 @@ class PodCast extends Component
             'title'     => 'required',
             'desc'     => 'nullable',
              'image'     => 'required',
-             'image'     => 'nullable',
+             'audio'     => 'nullable',
 
         ];
     }
