@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('desc')->nullable();
             $table->string('image');
-            $table->string('mp3');
+            $table->string('mp3')->nullable();
             $table->timestamps();
         });
     }

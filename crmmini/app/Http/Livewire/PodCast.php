@@ -27,8 +27,9 @@ class PodCast extends Component
         return [
             'title'     => 'required',
             'desc'     => 'nullable',
-             'image'     => 'required|max:512|dimensions:max_width=100,max_height=100',
-             'audio'     => 'required|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav|max:25000',
+             'image'     => 'required',
+             'image'     => 'nullable',
+
         ];
     }
     private function resetForm() {
@@ -47,17 +48,19 @@ class PodCast extends Component
     {
         $data = $this->validate();
         $imagename = time() . '.' . $this->image->extension();
-        $name = time() . '.' . $this->audio->extension();
         $relPath = 'images/podcast/';
         if (!file_exists(public_path($relPath))) {
-            mkdir(public_path($relPath), 777, true);
+          mkdir(public_path($relPath), 777, true);
         }
-     
+        if($this->audio){
+        $name = time() . '.' . $this->audio->extension();
         $fileName = uniqid() . '.' . $this->audio->extension();
         $uploadedFile = $this->audio->store('audio/', 'userpublic');
         $attachFile = substr($uploadedFile, strpos($uploadedFile, "//")+2);
         \File::move(base_path('public/'.$uploadedFile),base_path('/public/audio/podcast/'.$fileName));
-
+        }else{
+          $fileName =null;
+        }
        
          Image::make($this->image)->save($relPath . $imagename);
 		ModelsPodCast::create([
